@@ -2,8 +2,8 @@
 
 #Install and run on android
 
-#cd ImageSlider
+- cd ImageSlider
 
-#npm install
+- npm install
 
-#react-native run-android
+- react-native run-android
