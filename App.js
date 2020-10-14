@@ -9,6 +9,14 @@ const App = () => {
   const [api, setApi] = useState(apiObject.api_array[parseInt(apiObject.api)-1]);
   const [imageList, setImageList] = useState([]);
 
+  const isEmpty = (obj) => {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+  }
+
   const getImages = () => {
     if(Array.isArray(api)){
       if(api.length>1){
@@ -26,7 +34,17 @@ const App = () => {
   };
 
   useEffect(() => {
-    getImages();
+    for (const property in api) {
+      if (!isEmpty(api[property])) {
+        try {
+          getImages();
+        } catch(err) { 
+          alert(err);
+        }
+      }else{
+        alert("Please check your API!");
+      }
+    }
   }, [api,imageList]);
 
   return (
@@ -37,3 +55,4 @@ const App = () => {
 };
 
 export default App;
+
